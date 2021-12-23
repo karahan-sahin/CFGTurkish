@@ -1,0 +1,27 @@
+{
+    "yI": ["Case","Acc"],
+    "yA": ["Case","Dat"],
+    "DA": ["Case","Loc"],
+    "DAn": ["Case","Abl"],
+    "ylA": ["Case","Ins"],
+
+    "lAr": ["Number","Plur"],
+
+    "Im": ["Person","1Sg"],
+    "In": ["Person","2Sg"],
+    "ImIz": ["Person","1Pl"],
+    "k": ["Person","1Pl"],
+    "InIz": ["Person","2Pl"],
+    "lAr^": ["Person","3Pl"],
+
+
+    "Ir": ["Tense","Pres"],
+    "DIr": ["Tense","Pres"],
+    "Iyor": ["Tense","Pres"],
+    "AcAk": ["Tense","Fut"],
+    "mIş": ["Tense","Past"],
+    "DI": ["Tense","Past"],
+
+    "^In": ["Voice", "Pass"],
+    "DIR": ["Voice", "Cau"]
+}
