@@ -1,8 +1,158 @@
+# Sentence Types
 S -> NP.Nom VP
-VP -> NP.Acc V
-VP -> NP.Dat V
-VP -> NP.Loc V
-VP -> NP.Abl V
-VP -> NP.Ins V
-VP -> ADV.Past V.Past
+S -> NP.Acc VP
+S -> NP.Nom NP.Pred
+S -> VP.Pass
+S -> NP.Nom ADJ.Pred
+S -> VP PUNCT
+S -> VP.Ques
+VP -> VP.Imp
+S -> NP.Pred
+S -> ADJ.Pred PUNCT
+
+VP -> Verb
+ADJP -> Adj
+NP -> Noun
+
+# Punctuation
+Ques -> VP.Ques PUNCT.Ques
+Decl -> S PUNCT
+
+# Verbal Predicate
+VP -> NP.Bare VP
+VP -> NP.Nom VP
+VP -> NP.Acc VP
+VP -> NP.Dat VP
+VP -> NP.Loc VP
+VP -> NP.Abl VP
+VP -> NP.Ins VP
+VP -> POSTP VP
+VP -> ADV VP
+
+# Verbal Predicate (Questions)
+S -> VP QuesP
+S -> QuestP VP
+
+# Nominal Predicate
+NP.Pred -> NP.Bare NP.Pred
+NP.Pred -> NP.Acc NP.Pred
+NP.Pred -> NP.Dat NP.Pred
+NP.Pred -> NP.Loc NP.Pred
+NP.Pred -> NP.Abl NP.Pred
+NP.Pred -> NP.Ins NP.Pred
+NP.Pred -> NP.Gen NP.Pred
+NP.Pred -> ADJ NP.Pred
+# Look at ADV to NP.Mod
 NP -> N.Gen N.Poss
+
+# (Bare) Possesive Constructions
+NP.Acc -> NP.Bare NP.Acc
+NP.Dat -> NP.Bare NP.Dat
+NP.Loc -> NP.Bare NP.Loc
+NP.Abl -> NP.Bare NP.Abl
+NP.Ins -> NP.Bare NP.Ins
+
+# (Bare) Possesive Constructions
+NP.Acc -> NP.Bare NP.Acc
+NP.Dat -> NP.Bare NP.Dat
+NP.Loc -> NP.Bare NP.Loc
+NP.Abl -> NP.Bare NP.Abl
+NP.Ins -> NP.Bare NP.Ins
+
+# Adjectives
+NP.Acc -> ADJ NP.Acc
+NP.Dat -> ADJ NP.Dat
+NP.Loc -> ADJ NP.Loc
+NP.Abl -> ADJ NP.Abl
+NP.Bare -> ADJ NP.Bare
+NP.Ins -> ADJ NP.Ins
+
+ADJ -> ADV ADJ
+
+# Adjectival Predicate
+ADJ.Pred -> NP.Bare ADJ.Pred
+ADJ.Pred -> NP.Bare ADJ.Pred
+ADJ.Pred -> NP.Nom ADJ.Pred
+ADJ.Pred -> NP.Acc ADJ.Pred
+ADJ.Pred -> NP.Dat ADJ.Pred
+ADJ.Pred -> NP.Loc ADJ.Pred
+ADJ.Pred -> NP.Abl ADJ.Pred
+ADJ.Pred -> NP.Ins ADJ.Pred
+ADJ.Pred -> ADV ADJ.Pred
+# Look at ADV to NP.Mod
+NP -> N.Gen N.Poss
+
+# Coordination
+NP.Acc -> NP.Acc x1
+x1 -> CONJ NP.Acc
+NP.Dat -> NP.Dat CONJ NP.Dat
+NP.Loc -> NP.Loc CONJ NP.Loc
+NP.Abl -> NP.Abl CONJ NP.Abl
+NP.Ins -> NP.Ins CONJ NP.Ins
+
+# Determiners
+NP.Bare -> Det NP.Bare
+NP.Acc -> Det NP.Acc
+NP.Dat -> Det NP.Dat
+NP.Loc -> Det NP.Loc
+NP.Abl -> Det NP.Abl
+NP.Ins -> Det NP.Ins
+
+# Questions
+QuesP -> Ques NP.Bare
+VP -> VP QuestP
+
+#Post Positions
+POSTP -> NP Postp
+POSTP -> NP.Acc POSTP
+POSTP -> NP.Dat POSTP
+POSTP -> NP.Loc POSTP
+POSTP -> NP.Abl POSTP
+POSTP -> NP.Ins POSTP
+
+Sentences
+
+- ADV NP.Dat Det Noun.Bare Verb (Dün arkadaşıma bir hediye aldım.) [x]
+
+- [ADJ NP.Acc] NP.Ins Verb (Tarihi romanları keyifle okuyorum) [x]
+
+- NP.Nom NP(Date) NP.Acc POSTP NP.Dat NP.Bare Verb (Ben dün akşam yemeği için anneme yardım ettim.)
+
+- NP.Nom NP.Bare NP.Acc Conj NP.Acc Verb (Destanlar milli kültürümüzü ve tarihimizi anlatır.)
+
+- NP(Date) NP.Abl NP.Nom] ADV ADV ADJ NP.Pred (Yaz meyvelerinden karpuz bence en güzel meyvedir.)
+
+- Det NP.Rel NP.Dat Verb Ques PUNCT.Ques (Bu akşamki toplantıya katılacak mısınız?) 
+
+- Det NP.Gen NP.Dat Det NP(Date) NP.Acc Verb (Bu ağacın altında her gece mehtabı izlerdik.) 
+
+- NP.Nom NP.Dat ADV ADJ Ques NP.Bare Verb PUNCT.Ques (Siz buraya en son ne zaman geldiniz?)
+
+- NP.Gen Num(ADJ) NP.Poss NP.Gen NP.Pred (Anadolu’nun dört yanı medeniyetin beşiğidir. )
+
+- ProperNoun ProperNoun.Poss NP.Gen ADJ ADJ(NP) NP.Pred (Orhun Abideleri Türkçenin ilk yazılı örnekleridir.)
+
+- NP NP.Gen NP.Dat ADV NP.Pred
+
+- ADJ NP.Ins NP.Bare Verb.Imp 
+ 
+
+
+ 
+
+ 
+Okul bizim köye epeyce uzaktaydı. 
+Yüksek sesle müzik dinleme
+
+
+# Categories
+Noun
+Verb
+ADV
+ADJ
+INTJ
+PUNCT
+CONJ
+ProperNoun
+POSTP (Add case requirements)
+Det→
