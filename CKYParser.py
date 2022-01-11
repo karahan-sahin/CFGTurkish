@@ -14,10 +14,10 @@ class CKYParser():
         self.grammar = open("linguistic/grammar",'r', encoding="utf-8").read()
         self.CFG_to_CNF()
         self.order = 0
-        self.morphology = json.loads(open("CFGTurkish/linguistic/morphology_map.json","r",encoding="utf-8").read())
-        self.lexicon = json.loads(open("CFGTurkish/lexicon/lexicon.txt","r",encoding="utf-8").read())
-        self.propbank = json.loads(open("CFGTurkish/linguistic/propbank.txt","r",encoding="utf-8").read())
-        self.adverbs = json.loads(open("CFGTurkish/lexicon/open_category/adverbial.txt","r",encoding="utf-8").read())
+        self.morphology = json.loads(open("linguistic/morphology_map.json","r",encoding="utf-8").read())
+        self.lexicon = json.loads(open("lexicon/lexicon.txt","r",encoding="utf-8").read())
+        self.propbank = json.loads(open("linguistic/propbank.txt","r",encoding="utf-8").read())
+        self.adverbs = json.loads(open("lexicon/open_category/adverbial.txt","r",encoding="utf-8").read())
 
     def parse(self, sentence):
         """
