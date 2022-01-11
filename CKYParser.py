@@ -1,6 +1,5 @@
 from collections import defaultdict
 import numpy as np
-import sys
 import pandas as pd
 import json
 
@@ -13,13 +12,12 @@ class CKYParser():
 
     def __init__(self):
         self.grammar = open("linguistic/grammar",'r', encoding="utf-8").read()
+        self.CFG_to_CNF()
         self.order = 0
-        self.morphology = json.loads(open("/home/kara/Documents/Courses/Fall 2021/CMPE561 - NATURAL LANGUAGE PROCESSING/Application Projects/CFGTurkish/linguistic/morphology_map.json","r",encoding="utf-8").read())
-        self.lexicon = json.loads(open("/home/kara/Documents/Courses/Fall 2021/CMPE561 - NATURAL LANGUAGE PROCESSING/Application Projects/CFGTurkish/lexicon/lexicon.txt","r",encoding="utf-8").read())
-        self.propbank = json.loads(open("/home/kara/Documents/Courses/Fall 2021/CMPE561 - NATURAL LANGUAGE PROCESSING/Application Projects/CFGTurkish/linguistic/propbank.txt","r",encoding="utf-8").read())
-        self.adverbs = json.loads(open("/home/kara/Documents/Courses/Fall 2021/CMPE561 - NATURAL LANGUAGE PROCESSING/Application Projects/CFGTurkish/lexicon/open_category/adverbial.txt","r",encoding="utf-8").read())
-
-
+        self.morphology = json.loads(open("CFGTurkish/linguistic/morphology_map.json","r",encoding="utf-8").read())
+        self.lexicon = json.loads(open("CFGTurkish/lexicon/lexicon.txt","r",encoding="utf-8").read())
+        self.propbank = json.loads(open("CFGTurkish/linguistic/propbank.txt","r",encoding="utf-8").read())
+        self.adverbs = json.loads(open("CFGTurkish/lexicon/open_category/adverbial.txt","r",encoding="utf-8").read())
 
     def parse(self, sentence):
         """
@@ -31,7 +29,8 @@ class CKYParser():
         table = [{id: [] for id in range(1,len(sentence)+1)} for _ in range(len(sentence))]
 
 
-        sent_dict = [self.extract_features(s) for s in sentence] 
+        sent_dict = [self.extract_features(s) for s in sentence]
+        self.order = 0
 
         for j in range(1,len(sentence)+1):
             
@@ -41,7 +40,7 @@ class CKYParser():
 
                 for k in range(i, j-1):
                         
-                    x = table[i][k+1]
+                    x = table[i][k+1] 
                     y = table[k+1][j]
                                        
                     for prev in x:
@@ -148,7 +147,7 @@ class CKYParser():
 
         if "Det" in token_dict["POS"]:
             if "bir" == lemma:
-                token_dict["Number"] = "Sg"
+                token_dict["Number"] = "Sg"                
 
         if "ADJ" in token_dict["POS"]:
             if "Tense" in token_dict.keys():
@@ -206,9 +205,6 @@ class CKYParser():
                         print("Tense Agreement Error")
                         return False
                 
-        # Arg structure
-
-        # Lexical Case
         return True
 
     def create_constituent(self,x,y):
@@ -266,45 +262,52 @@ class CKYParser():
 
         x = 0
 
-        for rule, phrase in self.grammar.items():
+        self.grammar += "\n\n#Conversion rules\n" 
 
-            nodes = rule.split()
+        for line in self.grammar.split("\n"):
 
-            # X -> to VP  "to VP": X
-            # X -> TO VP  "TO VP": X
-            # TO -> to    "to": "TO"     
-            for idx, node in enumerate(nodes):
-                if node.islower():
-                    self.grammar.pop(rule)
-                    nodes[idx] = node.upper()
-                    self.grammar[node] = node.upper()
+            REGEX_RULE = r"^([\w\.]+) -> ([\w\.]+)((\s[\w\.]+)*?)$"
+            rule = re.findall(REGEX_RULE,line)
+            if rule:
+                
+                phrase = rule[0][0]
+                nodes = []
+                nodes.extend([c.strip().split() for c in rule[0][1:-1] if c])
+                nodes = [item for sublist in nodes for item in sublist]
 
+                # S -> VP "VP": S
+                # VP -> X  "X": "VP"
+                # X -> V NP "V NP": X
+                if len(nodes) == 1:
+                    _nodes = re.findall(f"\n{nodes[0]} -> ([\w\.]+)(\s[\w\.]+)*?\n", self.grammar)
+      
+                    if _nodes:
+                        for n_s in _nodes:
+                            
+                            intermediate = nodes[0]
+                            final_nodes = []
+                            
+                            while not(final_nodes):
+                                
+                                n_s = [n for n in n_s if n]
 
-            # S -> VP "VP": S
-            # VP -> X  "X": "VP"
-            # X -> V NP "V NP": X
-            if len(nodes) == 1:
-                for a,b in self.grammar.items():
-                    if b == nodes[0]:
-                        self.grammar[a] = phrase
-                    
+                                if len(n_s) >= 1:
+                                    final_nodes = n_s
 
-            # S -> A B C
-            # S -> A X1
-            # X1 -> B C
-            if len(nodes) > 2:
-                while len(nodes) > 2:
-                    self.grammar[" ".join(nodes[-2:])] = f"X{x}"
-                    nodes = nodes[:-2]
-                    self.grammar[" ".join(nodes.append(f"X{x}"))] = phrase
-                    x += 1
+                                else:
+                                    intermediate = n_s[0] 
+                            
+                                self.grammar += f"{phrase} -> {' '.join(final_nodes)}\n"
+                        
 
-    def evaluation(self, y_pred, y_true, beta=1):
-        precision = len(set(y_pred).intersection(set(y_true))) / len(y_pred)
-        recall = len(set(y_pred).intersection(set(y_true))) / len(y_true)
-        f_measure = ((beta**2 + 1)*precision*recall) /  ((beta**2)*(precision+recall))
-
-        return precision, recall, f_measure
-
-
-
+                # S -> A B C
+                # S -> A X1
+                # X1 -> B C
+                if len(nodes) > 2:
+                    _nodes = nodes
+                    while len(_nodes) > 2:
+                        self.grammar += f"x{x} -> "+" ".join(_nodes[-2:])+"\n" 
+                        _nodes = _nodes[:-2]
+                        _nodes.append(f"x{x}")
+                        self.grammar += (f"{phrase} -> " + " ".join(_nodes))+"\n"
+                        x += 1

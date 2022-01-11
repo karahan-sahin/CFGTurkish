@@ -1,5 +1,5 @@
 from CKYParser import CKYParser
-
+import sys
 def main():
     
     sentences = [

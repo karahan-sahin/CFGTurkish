@@ -12,9 +12,9 @@ Lexicon for POS and Argument Structure are obtained from [Starlang Software](htt
 - `__version__ >= Python 3.6`
 
 ```
-python -m venv cfg_turkish
-source cfg_turkish/bin/activate
-python -m pip install -r requirements.txt
+!python -m venv cfg_turkish
+!source cfg_turkish/bin/activate
+!python -m pip install -r requirements.txt
 ```
 ## Usage
 

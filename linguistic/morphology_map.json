@@ -33,7 +33,5 @@
 
     "ki": ["Case","Rel"],
 
-
-    "Hl": ["Voice", "Pass"],
-    "DHrt": ["Voice", "Cau"]
+    "Hl": ["Voice", "Pass"]
 }
