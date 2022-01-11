@@ -5,31 +5,32 @@ def main():
     sentences = [
 
         # Grammatical
-        ["Dün", "arkadaş+Im+yA", "bir", "hediye", "al+DI+Im", "."],
-        ["Tarihi", "roman+lAr+yI", "keyif+ylA", "oku+Iyor+Im", "."],
-        ["Ben", "dün", "akşam", "yemek+yI", "için", "anne+Im+yA", "yardım", "et+DI+Im", "."],
-        ["Destan+lAr", "milli", "kültür+ImIz+yI", "ve", "tarih+ImIz+yI", "anlat+Ir", "."],
-        ["Yaz", "meyve+lAr+In+DAn", "karpuz", "bence", "en", "güzel", "meyve+DIr", "."],
-        ["Bu", "akşam+ki", "toplantı+yA", "katıl+AcAk", "mi+InIz", "?"],
-        ["Bu", "ağaç+In", "alt+In+DA", "her", "gece", "mehtap+yI", "izle+Ir+DI+k", "." ],
-        ["Siz", "bura+yA", "en", "son", "ne", "zaman", "gel+DI+InIz", "?"],
-        ["Anadolu+nIn", "dört", "yan+yI", "medeniyet+nIn", "beşik+nI+DIr", "."],
-        ["Orhun", "Abide+lAr+yI", "Türkçe+nIn", "ilk", "yazılı", "örnek+lAr+nI+DIr", "."], 
-        ["Okul", "biz+Im", "köy+yA", "epeyce", "uzak+DA+DI", "."],
-        ["Yüksek", "ses+ylA", "müzik", "dinle+mA", "."],
+        ["Dün", "arkadaş+(H)m+(y)A", "bir", "hediye", "al+DH+(H)m", "."],
+        ["Tarihi", "roman+lAr+(y)H", "keyif+(y)lA", "oku+(H)yor+(H)m", "."],
+        ["Ben", "dün", "akşam", "yemek+(y)H", "için", "anne+(H)m+(y)A", "yardım", "et+DH+(H)m", "."],
+        ["Destan+lAr", "milli", "kültür+(H)mHz+(y)H", "ve", "tarih+(H)mHz+(y)H", "anlat+Hr", "."],
+        ["Yaz", "meyve+lAr+(H)n+DAn", "karpuz", "bence", "en", "güzel", "meyve+DHr", "."],
+        ["Bu", "akşam+ki", "toplantı+(y)A", "katıl+(y)AcAk", "mi+(sH)nHz", "?"],
+        ["Bu", "ağaç+(n)Hn", "alt+(n)H+nDA", "her", "gece", "mehtap+(y)H", "izle+Hr+DH+k", "." ],
+        ["Siz", "bura+(y)A", "en", "son", "ne", "zaman", "gel+DH+(sH)nHz", "?"],
+        ["Anadolu+(n)Hn", "dört", "yan+(n)H", "medeniyet+(n)Hn", "beşik+nH+DHr", "."],
+        ["Orhun", "Abide+lAr+(n)H", "Türkçe+(n)Hn", "ilk", "yazılı", "örnek+lAr+(n)H+DHr", "."], 
+        ["Okul", "biz+(H)m", "köy+(y)A", "epeyce", "uzak+DA+DH", "."],
+        ["Yüksek", "ses+(y)lA", "müzik", "dinle+mA", "."],
 
         # Ungrammatical
-        ["Ben", "arkadaş+Im+yA", "hediye","al+DI+In", "."], 
-        ["Tarihi", "bir", "roman+lAr", "oku+DI+Im", "."], 
-        ["Dün", "baba+Im+yA", "yardım", "et+AcAk+Im", "."], 
-        ["Ben", "okul", "git+DI+Im", "." ],
-        ["Ben", "kitap", "oku+^In+DI", "." ],
-        ["Ben", "okul+DA", "git+DI+Im", "."],
+        ["Ben", "arkadaş+(H)m+(y)A", "hediye","al+DH+(H)n", "."], 
+        ["Tarihi", "bir", "roman+lAr", "oku+DH+(H)m", "."], 
+        ["Dün", "baba+(H)m+(y)A", "yardım", "et+(y)AcAk+(H)m", "."], 
+        ["Ben", "okul", "git+DH+(H)m", "." ],
+        ["Ben", "kitap", "oku+Hl+DH", "." ],
+        ["Ben", "okul+DA", "git+DH+(H)m", "."],
 
     ]
 
     for sentence in sentences:
         parser = CKYParser()
+        print(sentence)
         print(parser.parse(sentence))
         print("******************************")
 

@@ -11,12 +11,16 @@ S -> NP.Pred
 S -> ADJ.Pred PUNCT
 
 VP -> Verb
-ADJP -> Adj
+ADJP -> ADJ
+ADJP -> ADV ADJ
 NP -> Noun
 
 # Punctuation
 Ques -> VP.Ques PUNCT.Ques
 Decl -> S PUNCT
+
+"git": "Verb.Nom.Dat" 
+S -> NP.Nom NP.Dat git
 
 # Verbal Predicate
 VP -> NP.Bare VP
@@ -31,7 +35,7 @@ VP -> ADV VP
 
 # Verbal Predicate (Questions)
 S -> VP QuesP
-S -> QuestP VP
+S -> QuesP VP
 
 # Nominal Predicate
 NP.Pred -> NP.Bare NP.Pred
@@ -52,12 +56,24 @@ NP.Loc -> NP.Bare NP.Loc
 NP.Abl -> NP.Bare NP.Abl
 NP.Ins -> NP.Bare NP.Ins
 
-# (Bare) Possesive Constructions
-NP.Acc -> NP.Bare NP.Acc
-NP.Dat -> NP.Bare NP.Dat
-NP.Loc -> NP.Bare NP.Loc
-NP.Abl -> NP.Bare NP.Abl
-NP.Ins -> NP.Bare NP.Ins
+# Genitive Possesive Constructions
+NP.Nom -> NP.Nom NP.Poss.Bare
+NP.Acc -> NP.Gen NP.Poss.Acc
+NP.Dat -> NP.Gen NP.Poss.Dat
+NP.Loc -> NP.Gen NP.Poss.Loc
+NP.Abl -> NP.Gen NP.Poss.Abl
+NP.Ins -> NP.Gen NP.Poss.Ins
+NP.Bare -> NP.Gen NP.Poss.Bare
+
+NP.Poss.Acc -> ADJ NP.Poss.Acc
+NP.Poss.Dat -> ADJ NP.Poss.Dat
+NP.Poss.Loc -> ADJ NP.Poss.Loc
+NP.Poss.Abl -> ADJ NP.Poss.Abl
+NP.Poss.Ins -> ADJ NP.Poss.Ins
+NP.Poss.Bare -> ADJ NP.Poss.Bare
+NP.Poss.Pred -> ADJ NP.Poss.Pred
+
+NP.Pred -> NP.Gen NP.Poss.Pred
 
 # Adjectives
 NP.Acc -> ADJ NP.Acc
@@ -66,6 +82,13 @@ NP.Loc -> ADJ NP.Loc
 NP.Abl -> ADJ NP.Abl
 NP.Bare -> ADJ NP.Bare
 NP.Ins -> ADJ NP.Ins
+
+NP.Acc -> NP.Rel NP.Acc
+NP.Dat -> NP.Rel NP.Dat
+NP.Loc -> NP.Rel NP.Loc
+NP.Abl -> NP.Rel NP.Abl
+NP.Bare -> NP.Rel NP.Bare
+NP.Ins -> NP.Rel NP.Ins
 
 ADJ -> ADV ADJ
 
@@ -100,7 +123,8 @@ NP.Ins -> Det NP.Ins
 
 # Questions
 QuesP -> Ques NP.Bare
-VP -> VP QuestP
+QuesP -> ADJP QuesP
+VP -> VP QuesP
 
 #Post Positions
 POSTP -> NP Postp

@@ -1,0 +1,7 @@
+{
+    "dün": "Past",
+    "bugün": "Pres",
+    "yarın": "Fut",
+    "ilerde": "Fut",
+    "dün": "Past"
+}

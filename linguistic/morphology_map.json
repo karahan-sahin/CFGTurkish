@@ -1,33 +1,39 @@
 {
-    "yI": ["Case","Acc"],
-    "yA": ["Case","Dat"],
+    "(y)H": ["Case","Acc"],
+    "(n)H": ["Poss","3sg"],
+    "(y)A": ["Case","Dat"],
+    "nA": ["Case","Dat"],
     "DA": ["Case","Loc"],
+    "nDA": ["Case","Loc"],
     "DAn": ["Case","Abl"],
-    "ylA": ["Case","Ins"],
-    "nIn": ["Case","Gen"],
+    "nDAn": ["Case","Abl"],
+    "(y)lA": ["Case","Ins"],
+    "(n)Hn": ["Case","Gen"],
 
     "lAr": ["Number","Plur"],
 
-    "Im": ["Person","1Sg"],
-    "In": ["Person","2Sg"],
-    "nI": ["Person","3Sg"],
-    "ImIz": ["Person","1Pl"],
+    "(H)m": ["Person","1Sg"],
+    "(H)n": ["Person","2Sg"],
+    "nH": ["Person","3Sg"],
+    "(H)mHz": ["Person","1Pl"],
+    "(H)z": ["Person","1Pl"],
     "k": ["Person","1Pl"],
-    "InIz": ["Person","2Pl"],
+    "(sH)nHz": ["Person","2Pl"],
+    "(sH)n": ["Person","2Pl"],
     "lAr^": ["Person","3Pl"],
 
 
-    "Ir": ["Tense","Pres"],
-    "DIr": ["Case","Pred"],
-    "Iyor": ["Tense","Pres"],
-    "AcAk": ["Tense","Fut"],
-    "mIş": ["Tense","Past"],
-    "DI": ["Tense","Past"],
+    "Hr": ["Tense","Pres"],
+    "DHr": ["Case","Pred"],
+    "(H)yor": ["Tense","Pres"],
+    "(y)AcAk": ["Tense","Fut"],
+    "mHŞ": ["Tense","Past"],
+    "DH": ["Tense","Past"],
     "mA": ["Case","Imp"],
 
     "ki": ["Case","Rel"],
 
 
-    "^In": ["Voice", "Pass"],
-    "DIR": ["Voice", "Cau"]
+    "Hl": ["Voice", "Pass"],
+    "DHrt": ["Voice", "Cau"]
 }
