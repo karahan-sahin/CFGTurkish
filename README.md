@@ -54,7 +54,7 @@ parser.parse(["Destan+lAr", "milli", "kültür+(H)mHz+(y)H", "ve", "tarih+(H)mHz
 - The evaluation metrics are standard Precision, Recall and F-measure implemented for parsing. The formulae is given below.
 - `evalution() ` function is takes the parsed input and true outputs and returns the metric calculations
 
-```
+```python
 test_sentence = ["Destan+lAr", "milli", "kültür+(H)mHz+(y)H", "ve", "tarih+(H)mHz+(y)H", "anlat+Hr", "."]
 y_true = ["NP.Nom", "NP.Bare", "NP.Acc", "Conj", "NP.Acc", "Verb", "PUNCT", "VP"]
 y_pred = parser.parse(test_sentence)
