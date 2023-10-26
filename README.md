@@ -65,9 +65,15 @@ p,r,f_1 = evaluation(y_pred,y_true, beta=1) # beta param is the f-1 harmonic par
 
 $$
 Precision = \frac{S_{gold} \cap S_{model}}{S_{model}} \\
+$$
 
+
+$$
 Recall = \frac{S_{gold} \cap S_{model}}{S_{gold}} \\
+$$
 
+
+$$
 F-1 = \frac{2\times(P\times R)}{P+ R}
 $$
 
